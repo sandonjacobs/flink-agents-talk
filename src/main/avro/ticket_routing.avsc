@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "name": "TicketRouting",
+  "namespace": "io.sandonjacobs.ato.avro",
+  "doc": "The agent's routing decision for a support ticket.",
+  "fields": [
+    {"name": "ticket_id",  "type": "string"},
+    {"name": "subject",    "type": "string"},
+    {"name": "team",       "type": "string", "doc": "Team id from the team directory, or 'triage' if the agent could not decide."},
+    {"name": "priority",   "type": {"type": "enum", "name": "Priority", "symbols": ["P1", "P2", "P3", "P4"]}},
+    {"name": "reasoning",  "type": "string"},
+    {"name": "escalated",  "type": "boolean", "default": false, "doc": "True if the agent paged the team's on-call."},
+    {"name": "model",      "type": "string"},
+    {"name": "routed_at",  "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}

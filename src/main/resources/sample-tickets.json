@@ -1,0 +1,10 @@
+[
+  {"customer_id": "acme-corp",    "channel": "EMAIL", "subject": "Charged twice this month",       "description": "Our card was charged two times for the October invoice. Please refund the duplicate charge."},
+  {"customer_id": "globex",       "channel": "CHAT",  "subject": "Everything is down",             "description": "Your dashboard has returned 502 errors for the last 15 minutes for our whole team. We can't work."},
+  {"customer_id": "initech",      "channel": "WEB",   "subject": "SSO login loop",                 "description": "After we rotated our Okta certificate, users get stuck in a redirect loop when signing in with SAML."},
+  {"customer_id": "umbrella",     "channel": "WEB",   "subject": "iOS app crashes on launch",      "description": "Since updating to the latest version, the iPhone app crashes immediately when I open it."},
+  {"customer_id": "hooli",        "channel": "EMAIL", "subject": "Webhooks stopped arriving",      "description": "Our endpoint hasn't received any order.created webhooks since yesterday 3pm. Nothing changed on our side."},
+  {"customer_id": "soylent",      "channel": "PHONE", "subject": "Strange login from another country", "description": "I got an email that someone logged into my admin account from an IP in another country. I did not do this."},
+  {"customer_id": "vandelay",     "channel": "CHAT",  "subject": "How do I add a teammate?",       "description": "Where in the settings do I invite a new colleague to our workspace?"},
+  {"customer_id": "wayne-ent",    "channel": "WEB",   "subject": "Export to CSV is missing columns","description": "The monthly CSV export no longer includes the 'region' column we rely on for reporting."}
+]

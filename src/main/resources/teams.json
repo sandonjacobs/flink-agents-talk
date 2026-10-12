@@ -1,0 +1,37 @@
+[
+  {
+    "id": "payments",
+    "name": "Payments & Billing",
+    "owns": "Invoices, charges, refunds, subscription plans, payment methods, tax, failed or duplicate payments."
+  },
+  {
+    "id": "identity",
+    "name": "Identity & Access",
+    "owns": "Login, passwords, SSO/SAML, MFA, account lockouts, user roles and permissions, API keys."
+  },
+  {
+    "id": "platform-sre",
+    "name": "Platform / SRE",
+    "owns": "Outages, downtime, errors (5xx), latency, timeouts, degraded performance across the product, status page incidents."
+  },
+  {
+    "id": "mobile",
+    "name": "Mobile Apps",
+    "owns": "iOS and Android app crashes, push notifications, app store issues, mobile-only bugs."
+  },
+  {
+    "id": "data-integrations",
+    "name": "Data & Integrations",
+    "owns": "Webhooks, public API behavior, CSV/data exports and imports, third-party integrations (Slack, Salesforce, Zapier)."
+  },
+  {
+    "id": "security",
+    "name": "Security",
+    "owns": "Suspected breaches, phishing, compromised accounts, vulnerability reports, data privacy and GDPR/data deletion requests."
+  },
+  {
+    "id": "customer-success",
+    "name": "Customer Success",
+    "owns": "How-to questions, onboarding, feature requests, general feedback, anything not clearly owned by another team."
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "name": "SupportTicket",
+  "namespace": "io.sandonjacobs.ato.avro",
+  "doc": "A raw support ticket as submitted by a customer.",
+  "fields": [
+    {"name": "ticket_id",   "type": "string"},
+    {"name": "customer_id", "type": "string"},
+    {"name": "channel",     "type": {"type": "enum", "name": "Channel", "symbols": ["EMAIL", "CHAT", "PHONE", "WEB"]}, "default": "WEB"},
+    {"name": "subject",     "type": "string"},
+    {"name": "description", "type": "string"},
+    {"name": "created_at",  "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}
