@@ -10,6 +10,8 @@ JAVA      := java $(JAVA_OPTS) -cp $(JAR)
 .PHONY: help up down build job produce interactive watch clean
 
 MODEL     ?= qwen2.5:7b
+OLLAMA_PID := .ollama.pid
+OLLAMA_LOG := .ollama.log
 
 ##@ ℹ️  Help
 
@@ -21,13 +23,29 @@ help:          ## 🙋 Show this help
 
 ##@ 🏗️  Infrastructure
 
-up:            ## 🚀 Start Kafka, Schema Registry, Kafka UI; pull + warm the model on native Ollama
+up:            ## 🚀 Start Kafka, Schema Registry, Kafka UI; start Ollama, pull + warm the model
 	docker compose up -d
+	@if curl -sf http://localhost:11434/api/version > /dev/null; then \
+		echo "ollama already running"; \
+	else \
+		echo "starting ollama serve (log: $(OLLAMA_LOG))"; \
+		nohup ollama serve > $(OLLAMA_LOG) 2>&1 & echo $$! > $(OLLAMA_PID); \
+		for i in $$(seq 1 30); do \
+			curl -sf http://localhost:11434/api/version > /dev/null && break; \
+			sleep 1; \
+		done; \
+		curl -sf http://localhost:11434/api/version > /dev/null || { echo "ollama failed to start; see $(OLLAMA_LOG)"; exit 1; }; \
+	fi
 	ollama pull $(MODEL)
 	ollama run $(MODEL) "Say ready." > /dev/null && echo "$(MODEL) warmed up"
 
-down:          ## 🛑 Stop the Docker services
+down:          ## 🛑 Stop the Docker services (and Ollama if `make up` started it)
 	docker compose down
+	@if [ -f $(OLLAMA_PID) ]; then \
+		kill $$(cat $(OLLAMA_PID)) 2>/dev/null || true; \
+		rm -f $(OLLAMA_PID); \
+		echo "stopped ollama"; \
+	fi
 
 ##@ 🔨 Build
 
